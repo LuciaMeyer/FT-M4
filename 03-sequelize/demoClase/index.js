@@ -1,10 +1,10 @@
-const { Sequelize, DataTypes, or } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 
 const sequelize = new Sequelize('postgres://postgres:PostgresLu*@localhost:5432/democlase', { logging: false });
 
 sequelize.authenticate() // devuelve una promesa
     .then( () => {
-        console.log('Conexión exitosa')
+        console.log('Conexión exitosa');
     })
     .catch(err => {
         console.log(err)
@@ -23,7 +23,35 @@ sequelize.authenticate() // devuelve una promesa
     },
     skill: {
         type: DataTypes.FLOAT,
-        defaultValue: 50.0
+        defaultValue: 50.0,
+        // get() {
+        //     return this.getDataValue('skill') + ' points';
+        // },
+        validate: {
+          isEven(value) {
+            if (parseInt(value) % 2 !== 0) {
+                throw new Error('Only even vaues are allowed!')
+            }
+          }  
+        }
+    },
+    password: {
+        type: DataTypes.STRING,
+        set(value) {
+          this.setDataValue('password', (this.firstName + this.lastName + value).split('').sort(() => 0.5 - Math.random()).join(''));
+        }
+    },
+    fullName: {
+        type: DataTypes.VIRTUAL,
+        get() {
+            return this.firstName + ' ' + this.lastName;
+        }
+    },
+    email: {
+        type: DataTypes.STRING,
+        validate: {
+            isEmail: true
+        }
     }
  }, { 
     timestamps: true,
@@ -54,6 +82,10 @@ sequelize.authenticate() // devuelve una promesa
     timestamps: false
  })
 
+Team.hasOne(Player);
+Player.belongsTo(Team);
+
+
 sequelize.sync({ force: true })
     .then( async () => {
         console.log('Modelos sincronizados');
@@ -62,21 +94,61 @@ sequelize.sync({ force: true })
            firstName: 'Lucía',
            lastName: 'Meyer',
            age: 35,
-           skill: 83
+           skill: 82,
+           password: 12345
         })
 
         const player2 = await Player.create({
             firstName: 'Franco',
             lastName: 'Etcheverri',
-            age: 27
+            age: 35
          })
-         
+
+        const player3 = await Player.create({
+            firstName: 'Rodrigo',
+            lastName: 'Etcheverri',
+            age:25,
+            skill: 98,
+            email: 'hola@mail.com'
+        });
+
+        const player4 = await Player.create({
+            firstName: 'Julian',
+            lastName: 'Alvarez'
+        });
+
+        const player5 = await Player.create({
+            firstName: 'Angel',
+            lastName: 'Di María'
+        });           
+
          const team1 = await Team.create({
             code:'RC',
             name: 'Rosario Central',
             uniqueOne: 'R',
             uniqueTwo: 1
+         });
+
+         const team2 = await Team.create({
+            code:'NOB',
+            name: 'Nievels',
+            uniqueOne: 'N',
+            uniqueTwo: 1
          })
+
+         player2.setTeam('RC');
+         player3.setTeam(team2);
+         
+         const teamPlayer2 = await player2.getTeam(); // pregunto en qué equipo está el jugador 2
+         console.log(teamPlayer2.toJSON());
+
+         player5.createTeam({
+            code:'OTR',
+            name: 'Otro Equipo',
+            uniqueOne: 'O',
+            uniqueTwo: 1
+         }) // crea un equipo nuevo y se lo asigna al jugador 5
+
 
         //  player1.age = 36;
         //  await player1.save();
@@ -93,14 +165,28 @@ sequelize.sync({ force: true })
         // });
         // console.log(player.toJSON());
 
-        const [player, created] = await Player.findOrCreate({
-            where: {
-                lastName: 'Di María'
-            },
-            defaults: {
-                firstName: 'Angel'
-            }
-        })
-        console.log(created)
-        console.log(player.toJSON());
+        // const [player, created] = await Player.findOrCreate({
+        //     where: {
+        //         lastName: 'Di María'
+        //     },
+        //     defaults: {
+        //         firstName: 'Angel'
+        //     }
+        // })
+        // console.log(created)
+        // console.log(player.toJSON());
+
+        // const player = await Player.findOne({
+        //     where: {
+        //         lastName: 'Etcheverri',
+        //         age: 27
+        //     }
+        // })
+
+        // await Player.destroy({
+        //     truncate: true
+        // });
+
+        // const players = await Player.findAll(); 
+        // console.log(players.map(p => p.toJSON()));
  })

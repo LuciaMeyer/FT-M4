@@ -78,6 +78,7 @@ Debe retornar todos los personajes que se encuentren creados en la base de datos
 
 Adicionalmente pueden hacer que reciba por query los atributos que quiera devolver en el caso de no querer todos, por ejemplo: GET /character?name=true&hp=true
 
+
 #### GET /character/:code
 
 Debe retornar aquel personaje que coincida con el código enviado. En el caso de no encontrarlo debe responder con status code 404 y el mensaje "El código ${codigo} no corresponde a un personaje existente"

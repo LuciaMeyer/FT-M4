@@ -50,7 +50,6 @@ router.get('/:code', async (req, res) => {
     const character = await Character.findByPk(code);
     if(!character) return res.status(404).send(`El código ${code} no corresponde a un personaje existente`);
     res.json(character)
-
     // RESUELTO CON PROMESA
     // Character.findByPk(code)
     //     .then(character => {
@@ -59,7 +58,14 @@ router.get('/:code', async (req, res) => {
     //     })
 })
 
-
-
+router.get('/:name:hp', async (req, res) => {
+    const { name, hp } = req.params;
+    if(name && hp) {
+        const characters = await Character.findAll({
+            attributes: [name, hp]
+        });
+        res.json(characters); 
+    }
+})
 
 module.exports = router;
