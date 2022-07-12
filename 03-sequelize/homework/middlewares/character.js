@@ -43,6 +43,14 @@ router.get('/young', async (req, res) => {
     res.json(characterYoung);
 });
 
+router.get('/roles/:code', async (req, res) => {
+    const { code } = req.params;
+    const character = await Character.findByPk(code, {
+        include: Role
+    })
+    res.json(character);
+});
+
 router.get('/:code', async (req, res) => {
     const { code } = req.params;
     const character = await Character.findByPk(code);
