@@ -5,15 +5,29 @@ module.exports = sequelize => {
     code: {
       type: DataTypes.STRING(5),
       primaryKey: true,
+      validate: {
+        functValidate (value) {
+          if(value.toLowerCase() === 'henry') {
+            throw new Error('Error')
+          }
+        }
+      }
       // allowNull: false --> al ser PK por defecto no es null
     },
     name: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notIn: [[ "Henry", "SoyHenry", "Soy Henry" ]]
+      }
     },
     age: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      get() {
+        const value = this.getDataValue('age')
+        return value ? value + ' years old' : null;
+      }
     },
     race: {
       type: DataTypes.ENUM('Human', 'Elf', 'Machine', 'Demon', 'Animal', 'Other'),
