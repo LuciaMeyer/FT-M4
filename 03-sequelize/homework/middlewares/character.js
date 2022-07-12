@@ -15,31 +15,20 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    const { race } = req.query;
-    // if(!race) {
-    //     const characters = await Character.findAll();
-    //     res.json(characters);
-    // } else {
-    //     const characters = await Character.findAll({
-    //         where: {
-    //             race
-    //         }
-    //     });
-    //     res.json(characters); 
-    // }
+    const { race, name, hp, age } = req.query;
+
     const condition = {};
     const where = {}
+    const attributes = [];
+
     if(race) where.race = race;
-    // where = {
-    //     race: human
-    // }
-    // condition = {
-    //     where: {
-    //         race: 'Human'
-    //     }
-    // }
-    if(where) condition.where = where
-    // if(!code) condition.attributes = [code]
+    if(age) where.age = age;
+    if(name) attributes.push('name');
+    if(hp) attributes.push('hp');
+
+    if(attributes.length > 0) condition.attributes = attributes;
+    if(where) condition.where = where;
+
     const characters = await Character.findAll(condition);
     res.json(characters)
 
@@ -56,16 +45,6 @@ router.get('/:code', async (req, res) => {
     //         if(!character) return res.status(404).send(`El código ${code} no corresponde a un personaje existente`);
     //         res.json(character)
     //     })
-})
-
-router.get('/:name:hp', async (req, res) => {
-    const { name, hp } = req.params;
-    if(name && hp) {
-        const characters = await Character.findAll({
-            attributes: [name, hp]
-        });
-        res.json(characters); 
-    }
 })
 
 module.exports = router;

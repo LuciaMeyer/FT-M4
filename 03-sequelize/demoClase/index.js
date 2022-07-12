@@ -82,8 +82,8 @@ sequelize.authenticate() // devuelve una promesa
     timestamps: false
  })
 
-Team.hasOne(Player);
-Player.belongsTo(Team);
+Team.belongsToMany(Player, { through: 'Team_Player'});
+Player.belongsToMany(Team, { through: 'Team_Player'});
 
 
 sequelize.sync({ force: true })
@@ -134,20 +134,31 @@ sequelize.sync({ force: true })
             name: 'Nievels',
             uniqueOne: 'N',
             uniqueTwo: 1
-         })
+         });
 
-         player2.setTeam('RC');
-         player3.setTeam(team2);
+        await player1.setTeams(['RC', 'NOB']); // en la tabla intermedia relaciono al jugador 1 con 2 equipos
+        await team1.addPlayers([3, 4]); // en la tabla intermedia relaciono al team1 con 2 jugadores
+        
+        const teamRC = await Team.findByPk('RC', {
+            include: Player
+        });
+        console.log(teamRC.toJSON()); // esta búsqueda me trae al equipo {} y un [] de jugadores asociados a ese equipo
+        
+
+        //  await team1.setPlayers([player1, player2]); // puedo pasarle il id también [1,2]
+
+        //  player2.setTeam('RC');
+        //  player3.setTeam(team2);
          
-         const teamPlayer2 = await player2.getTeam(); // pregunto en qué equipo está el jugador 2
-         console.log(teamPlayer2.toJSON());
+        //  const teamPlayer2 = await player2.getTeam(); // pregunto en qué equipo está el jugador 2
+        //  console.log(teamPlayer2.toJSON());
 
-         player5.createTeam({
-            code:'OTR',
-            name: 'Otro Equipo',
-            uniqueOne: 'O',
-            uniqueTwo: 1
-         }) // crea un equipo nuevo y se lo asigna al jugador 5
+        //  player5.createTeam({
+        //     code:'OTR',
+        //     name: 'Otro Equipo',
+        //     uniqueOne: 'O',
+        //     uniqueTwo: 1
+        //  }) // crea un equipo nuevo y se lo asigna al jugador 5
 
 
         //  player1.age = 36;
