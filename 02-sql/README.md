@@ -1,25 +1,6 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+[⬅️ volver](https://github.com/LuciaMeyer/Henry_M4_BaseDeDatos)
 
-<table class="hide" width="100%" style='table-layout:fixed;'>
-  <tr>
-	  <td>
-	  	<a href="https://airtable.com/shrOlYwXwdTEsT4Cq?prefill_clase=02-sql">
-			<img src="https://static.thenounproject.com/png/204643-200.png" width="100"/>
-			<br>
-			Hacé click acá para dejar tu feedback sobre esta clase.
-	  	</a>
-	  </td>
-              <td>
-      <a href="https://quiz.soyhenry.com/evaluation/new/60785d6e4397ea47a1a8cdd3">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/HSQuiz.svg/768px-HSQuiz.svg.png" width="100" height="100"/>
-        <br>
-        Hacé click acá completar el quiz teórico de esta lecture.
-      </a>
-   </td>
-  </tr>
-</table>
-
-# SQL - Postgres
+# SQL Postgres
 
 Como en todo en este mundo, hay muchas opciones de bases de datos SQL. De hecho las hay pagas y gratis. Podríamos usar: MySQL, ORACLE, IBM DB2, SQL server, access, etc.
 Todas utilizan el lenguaje SQL, asi que son muy parecidas, el 80% de las cosas se puede hacer con cualquier motor. Nosotros vamos a ver en nuestro ejemplo `PostgreSQL`, que es una motor gratis de código abierto que tiene una comunidad muy activa. De hecho, postgre logra sacar funcionalidades antes que los motores pagos!
@@ -213,6 +194,4 @@ Según el tipo de union que queremos hacer vamos a usar alguno de estos tipos de
 
 > Los joins pueden ser operaciones muy costosas, de hecho, las bases de datos no relacionales suelen ser tan performantes porque esquivan los JOINS, logran ser más rápidas, pero ocupando más espacio.
 
-## Homework
-
-Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M4/tree/master/02-sql/homework)
+[⬆️ subir](#SQL-Postgres)

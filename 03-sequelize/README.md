@@ -1,23 +1,4 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
-
-<table class="hide" width="100%" style='table-layout:fixed;'>
-  <tr>
-	  <td>
-	  	<a href="https://airtable.com/shrOlYwXwdTEsT4Cq?prefill_clase=03-sequelize">
-			<img src="https://static.thenounproject.com/png/204643-200.png" width="100"/>
-			<br>
-			Hacé click acá para dejar tu feedback sobre esta clase.
-	  	</a>
-	  </td>
-              <td>
-      <a href="https://quiz.soyhenry.com/evaluation/new/607879524397ea47a1a8cf87">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/HSQuiz.svg/768px-HSQuiz.svg.png" width="100" height="100"/>
-        <br>
-        Hacé click acá completar el quiz teórico de esta lecture.
-      </a>
-   </td>
-  </tr>
-</table>
+[⬅️ volver](https://github.com/LuciaMeyer/Henry_M4_BaseDeDatos)
 
 # ORM
 
@@ -154,6 +135,4 @@ User.destroy(
   });
 ```
 
-## Homework
-
-Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M4/tree/master/03-sequelize/homework)
+[⬆️ subir](#ORM)

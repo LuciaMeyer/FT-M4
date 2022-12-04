@@ -1,23 +1,4 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
-
-<table class="hide" width="100%" style='table-layout:fixed;'>
-  <tr>
-   <td>
-    <a href="https://airtable.com/shrOlYwXwdTEsT4Cq?prefill_clase=01-dbms">
-   <img src="https://static.thenounproject.com/png/204643-200.png" width="100"/>
-   <br>
-   Hacé click acá para dejar tu feedback sobre esta clase.
-    </a>
-   </td>
-              <td>
-     <a href="https://quiz.soyhenry.com/evaluation/new/6076f533bbe844ed01c38129">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/HSQuiz.svg/768px-HSQuiz.svg.png" width="100" height="100"/>
-      <br>
-      Hacé click acá completar el quiz teórico de esta lecture.
-     </a>
-  </td>
-  </tr>
-</table>
+[⬅️ volver](https://github.com/LuciaMeyer/Henry_M4_BaseDeDatos)
 
 # Bases de Datos
 
@@ -45,6 +26,4 @@ Las ventajas de usar una base de datos SQL son:
 * Estás bases de datos son transaccionales, es decir que el motor de DB nos asegura que las operaciones que hagamos van a hacerse atómicamente, es decir que jamás vamos a tener datos corruptos.
 * Es una tecnología muy estudiada, hace años que ya está estable, en contrapartida con las bases de datos NoSQL que son relativamente nuevas.
 
-## Homework
-
-Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M4/tree/master/01-dbms/homework)
+[⬆️ subir](#Bases-de-datos)
